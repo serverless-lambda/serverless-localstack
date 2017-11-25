@@ -1,6 +1,6 @@
 ## example to go through serverless-plugin-localstack
 
-Use serverless example [aws-node-rest-api-with-dynamodb](https://github.com/serverless/examples/tree/master/aws-node-rest-api-with-dynamodb) and below lines in its `serverless.yml`
+Use serverless example [aws-node-rest-api-with-dynamodb](https://github.com/serverless/examples/tree/master/aws-node-rest-api-with-dynamodb) and add below lines in its `serverless.yml`
 
 
 ```
