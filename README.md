@@ -1,5 +1,5 @@
 # serverless-localstack
-[Serverless](https://serverless.com/) Plugin to support running against [Atlassian Labs Localstack](https://github.com/atlassian/localstack).
+[Serverless](https://serverless.com/) Plugin to support running against [Localstack](https://github.com/localstack/localstack).
 
 This plugin allows any requests to AWS to be redirected to a running Localstack instance.
 
@@ -17,30 +17,24 @@ The easiest way to get started is to install via npm.
 
 ## Installation (without npm)
 
-If you'd like to install serverless-localstack via source:
-
-#### Clone the repository
-      git clone https://github.com/temyers/serverless-localstack
-
-#### Install the plugin
-
 In order for the plugin to be recognized it must first be enabled via the .serverless_plugins directory.
 
 ```
 cd project-path/
+npm install --save bluebird
+npm install --save aws-sdk
 mkdir .serverless_plugins
-ln -s /absolute/path/to/plugin .serverless_plugins/serverless-plugin-localstack
+ln -s /<PATH TO THE PLUGIN DIRECTORY>/src/index.js .serverless_plugins/serverless-plugin-localstack
 ```
 
 ## Configuring
 
 There are two ways to configure the plugin, via a JSON file or via serverless.yml. There are two supported methods for
-configuring the endpoints, globally via the "host" property, or individually. These properties may be mixed, allowing for
-global override support while also override specific endpoints.
+configuring the endpoints, globally via the "host" property, or individually. These properties may be mixed, allowing for global override support while also override specific endpoints.
 
 A "host" or individual endpoints must be configured or this plugin will be deactivated.
 
-#### Configuring endpoints via serverless.yml 
+### Configuring endpoints via serverless.yml 
 
 ```
 service: myService
@@ -63,7 +57,7 @@ custom:
       Kinesis: http://localhost:4568
 ```
 
-#### Configuring endpoints via JSON
+### Configuring endpoints via JSON
 
 ```
 service: myService
@@ -80,72 +74,20 @@ custom:
 
 For full documentation, see https://bitbucket.org/atlassian/localstack
 
-#### Installing via PIP
-
-The easiest way to get started with Localstack is to install it via Python's pip.
+## example to go through serverless-plugin-localstack
 
 ```
-pip install localstack
+cd example/service
+
+# start localstack service
+docker-compose up -d
+
+# serverless deploy
+npm install
+sls deploy
 ```
 
-#### Installing via Source
-
-Clone the repository
-```
-git clone git@bitbucket.org:atlassian/localstack.git
-```
-
-### Running Localstack
-
-There are multiple ways to run Localstack.
-
-#### Starting Localstack via Docker
-  
-If Localstack is installed via pip
-
-```
-localstack start --docker
-```
-
-If Localstack is installed via source
-
-```
-make docker-run
-```
-
-#### Starting Localstack without Docker
-
-If Localstack is installed via pip
-
-```
-localstack start
-```
-
-If Localstack is installed via source
-
-```
-make infra
-```
-
-## Contributing
-
-Setting up a development environment is easy using Serverless' plugin framework.
-
-##### Clone the Repo
-
-```
-git clone https://github.com/temyers/serverless-localstack
-```
-
-##### Setup your project
-
-```
-cd myproject
-mkdir .serverless_plugins
-ln -s /absolute/path/to/serverless-localstack .serverless_plugins/serverless-localstack
-```
-
-### Optional Debug Flag
+## Optional Debug Flag
 
 An optional debug flag is supported via serverless.yml that will enable additional debug logs.
 
